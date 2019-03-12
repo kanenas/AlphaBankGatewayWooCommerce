@@ -22,7 +22,7 @@ class WC_Gateway_Alpha extends WC_Payment_Gateway {
      * Constructor for the gateway.
      */
     public function __construct() {
-		//$icon = WC_HTTPS::force_https_url( WC()->plugin_url() . '/includes/gateways/paypal/assets/images/paypal.png' );
+	//$icon = WC_HTTPS::force_https_url( WC()->plugin_url() . '/includes/gateways/paypal/assets/images/paypal.png' );
         $this->id                 = 'alpha';
         $this->icon               = apply_filters( 'woocommerce_cod_icon', '' );
         $this->method_title       = __( 'Alpha Bank', 'woocommerce' );
@@ -34,17 +34,14 @@ class WC_Gateway_Alpha extends WC_Payment_Gateway {
         $this->init_settings();
 
         // Get settings
-        $this->title              = $this->get_option( 'title' );
-        $this->description        = $this->get_option( 'description' );
-        $this->instructions       = $this->get_option( 'instructions', $this->description );
-		$this->MerchantId = $this->get_option('MerchantId');
-		$this->Secret = $this->get_option('Secret');
-		
-		$this->AlphaBankUrl = $this->get_option('testmode') === 'yes' ? "https://alpha.test.modirum.com/vpos/shophandlermpi" : "https://www.alphaecommerce.gr/vpos/shophandlermpi";
-		
-		$this->InstallmentsActive = $this->get_option('installmentsActive') === 'yes' ? true : false;
-		
-		$this->autosubmitPaymentForm = $this->get_option('autosubmitPaymentForm') === 'yes' ? true : false;
+        $this->title                 = $this->get_option( 'title' );
+        $this->description           = $this->get_option( 'description' );
+        $this->instructions          = $this->get_option( 'instructions', $this->description );
+	$this->MerchantId            = $this->get_option( 'MerchantId' );
+	$this->Secret                = $this->get_option( 'Secret' );	
+	$this->AlphaBankUrl          = $this->get_option( 'testmode' ) === 'yes' ? "https://alpha.test.modirum.com/vpos/shophandlermpi" : "https://www.alphaecommerce.gr/vpos/shophandlermpi";	
+	$this->InstallmentsActive    = $this->get_option( 'installmentsActive' ) === 'yes' ? true : false;	
+	$this->autosubmitPaymentForm = $this->get_option( 'autosubmitPaymentForm' ) === 'yes' ? true : false;
 
         // Customer Emails
         add_action( 'woocommerce_email_before_order_table', array( $this, 'email_instructions' ), 10, 3 );
